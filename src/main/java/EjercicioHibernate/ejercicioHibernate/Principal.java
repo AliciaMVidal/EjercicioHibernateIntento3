@@ -18,6 +18,10 @@ public class Principal {
 	static SessionFactory sessionFactory;
 	
 	public static void main(String[] args) {
+		
+		MenuOpciones menuOpciones = new MenuOpciones();
+		menuOpciones.mostrarMenuPrincipal();
+		
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
