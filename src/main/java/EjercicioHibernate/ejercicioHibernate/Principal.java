@@ -22,6 +22,7 @@ public class Principal {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		tx = session.beginTransaction();
+		logger.info(String.format("%1$s: >>>>>> Comienzo de la transaction"));
 
 		//Insertar un departamento
 		Departamento d = new Departamento();
@@ -74,6 +75,8 @@ public class Principal {
 		empleadoUpdate.setNombre("Update");
 		EmpleadoDAO.updateEmpleado(session, empleadoUpdate);
 		tx.commit();
+
+		logger.info(String.format("%1$s: >>>>>> Hacer commit."));
 
 	}
 
