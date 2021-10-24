@@ -25,6 +25,7 @@ public class MenuOpciones {
 		System.out.println("2 - Menu  empleado");
 		System.out.println("3 - Salir");
 
+		logger.info(String.format("%1$s: >>>>>> Cargar Menu Principal"));
 		int opcion = teclado.nextInt();
 		if (opcion == 1) {
 			MenuOpciones.menuDepartamento();
@@ -39,6 +40,7 @@ public class MenuOpciones {
 	}
 
 	public static void menuDepartamento() {
+		logger.info(String.format("%1$s: >>>>>> Cargar Menu Departamento"));
 		System.out.println("Menu Departamento");
 		System.out.println("1 - Añadir departamento");
 		System.out.println("2 - Editar departamento");
@@ -97,6 +99,7 @@ public class MenuOpciones {
 	}
 
 	public static void menuEmpleado() {
+		logger.info(String.format("%1$s: >>>>>> Cargar Menu Principal"));
 		System.out.println("Menu Empleado");
 		System.out.println("1 - Añadir empleado");
 		System.out.println("2 - Editar empleado");
