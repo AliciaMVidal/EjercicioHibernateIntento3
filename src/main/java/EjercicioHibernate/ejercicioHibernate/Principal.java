@@ -19,7 +19,7 @@ public class Principal {
 	
 	public static void main(String[] args) {
 
-		logger.info(String.format("%1$s: >>>>>> Cargar Menu"));
+		logger.info(String.format("Cargar Menu"));
 		MenuOpciones.menuMostrar();
 		
 		

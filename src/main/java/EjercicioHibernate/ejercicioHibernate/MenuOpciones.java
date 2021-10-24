@@ -17,15 +17,15 @@ public class MenuOpciones {
 	static Scanner teclado = new Scanner(System.in);
 	static Session session = HibernateUtil.getSessionFactory().openSession();
 	static Transaction tx = null;
-	
 
 	public static void menuMostrar() {
 		System.out.println("Menu Principal");
 		System.out.println("1 - Menu  departamento");
 		System.out.println("2 - Menu  empleado");
-		System.out.println("3 - Salir");
+		System.out.println("3 - Menu ejercicio2");
+		System.out.println("4 - Salir");
 
-		logger.info(String.format("%1$s: >>>>>> Cargar Menu Principal"));
+		logger.info(String.format("Cargar Menu Principal"));
 		int opcion = teclado.nextInt();
 		if (opcion == 1) {
 			MenuOpciones.menuDepartamento();
@@ -34,13 +34,16 @@ public class MenuOpciones {
 			MenuOpciones.menuEmpleado();
 		}
 		if (opcion == 3) {
+			MenuOpciones.menuEjercicioDos();
+		}
+		if (opcion == 4) {
 			System.exit(0);
 		}
 
 	}
 
 	public static void menuDepartamento() {
-		logger.info(String.format("%1$s: >>>>>> Cargar Menu Departamento"));
+		logger.info(String.format("Cargar Menu Departamento"));
 		System.out.println("Menu Departamento");
 		System.out.println("1 - Añadir departamento");
 		System.out.println("2 - Editar departamento");
@@ -59,11 +62,11 @@ public class MenuOpciones {
 			departamento.setNombre(teclado.next());
 			System.out.println("Codigo responsable");
 			departamento.setCodResponsable(teclado.nextInt());
-			tx=session.beginTransaction();
+			tx = session.beginTransaction();
 			departDao.insertDepartamento(session, departamento);
 			tx.commit();
 		}
-		if(opcion == 2) {
+		if (opcion == 2) {
 			System.out.println("Editar departamento");
 			Departamento departamento = new Departamento();
 			System.out.println("Departamento a editar");
@@ -76,7 +79,7 @@ public class MenuOpciones {
 			departDao.updateDepartamento(session, departamento);
 			tx.commit();
 		}
-		if(opcion == 3) {
+		if (opcion == 3) {
 			System.out.println("Ver departamento");
 			Departamento departamento = new Departamento();
 			System.out.println("Codigo departamento a buscar");
@@ -85,21 +88,21 @@ public class MenuOpciones {
 			System.out.println(departamento.toString());
 			tx.commit();
 		}
-		if(opcion == 4) {
+		if (opcion == 4) {
 			System.out.println("Borrar departamento");
 			Departamento departamento = new Departamento();
 			System.out.println("Codigo departamento a borrar");
-			//departamento.setCodigo(teclado.nextInt());
+			// departamento.setCodigo(teclado.nextInt());
 			tx = session.beginTransaction();
 			departamento = departDao.readDepartamento(session, teclado.nextInt());
 			departDao.deleteDepartamento(session, departamento);
 			tx.commit();
-			
+
 		}
 	}
 
 	public static void menuEmpleado() {
-		logger.info(String.format("%1$s: >>>>>> Cargar Menu Principal"));
+		logger.info(String.format("Cargar Menu Principal"));
 		System.out.println("Menu Empleado");
 		System.out.println("1 - Añadir empleado");
 		System.out.println("2 - Editar empleado");
@@ -131,11 +134,11 @@ public class MenuOpciones {
 			empleado.setPuesto(teclado.next());
 			System.out.println("Codigo departamento");
 			empleado.setCodDepartamento(teclado.nextInt());
-			tx=session.beginTransaction();
+			tx = session.beginTransaction();
 			empleadoDao.insertEmpleado(session, empleado);
 			tx.commit();
 		}
-		if(opcion == 2) {
+		if (opcion == 2) {
 			System.out.println("Editar empleado");
 			Empleado empleado = new Empleado();
 			System.out.println("Empleado a editar");
@@ -162,7 +165,7 @@ public class MenuOpciones {
 			empleadoDao.updateEmpleado(session, empleado);
 			tx.commit();
 		}
-		if(opcion == 3) {
+		if (opcion == 3) {
 			System.out.println("Ver empleado");
 			Empleado empleado = new Empleado();
 			System.out.println("Codigo empleado a buscar");
@@ -171,7 +174,7 @@ public class MenuOpciones {
 			System.out.println(empleado.toString());
 			tx.commit();
 		}
-		if(opcion == 4) {
+		if (opcion == 4) {
 			System.out.println("Borrar empleado");
 			Empleado empleado = new Empleado();
 			System.out.println("Codigo empleado a borrar");
@@ -180,7 +183,11 @@ public class MenuOpciones {
 			empleadoDao.deleteEmpleado(session, empleado);
 			tx.commit();
 		}
-		
-		
+
+	}
+
+	public static void menuEjercicioDos() {
+		System.out.println("1 - Devolver trabajadores de un departamento");
+		EmpleadoDAO.seleccionarEmpleado(2);
 	}
 }
